@@ -28,7 +28,7 @@ def create_line_chart(data, x_range=None):
 st.title('Visualizzatore di Dati di Mercato con Streamlit e Plotly Express')
 
 if st.button('YTD'):
-    fig = create_line_chart(data, x_range=['2024-01-01', :])
+    fig = create_line_chart(data, x_range=['2024-01-01', -1])
     st.plotly_chart(fig)
 elif st.button('Mostra Tutto'):
     fig = create_line_chart(data)  # Nessun x_range specificato, mostra tutto
