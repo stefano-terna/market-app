@@ -17,29 +17,23 @@ st.write(ticker_data.info['longBusinessSummary'])
 data = yf.download(symbol, period='10y')
 data.reset_index(inplace=True)
 
-# Funzione per creare il grafico
-def create_chart(x_range=None):
-    fig = go.Figure(data=[go.Candlestick(x=data['Date'],
-                    open=data['Open'], high=data['High'],
-                    low=data['Low'], close=data['Close'])])
-
-    fig.update_layout(xaxis_rangeslider_visible=True)
-
-    if x_range:
+# Grafico con Plotly Express
+def create_line_chart(data, x_range=None):
+    fig = px.line(data, x='Date', y='Close', title=f'Prezzo di chiusura: {ticker}')
+    if x_range is not None:
         fig.update_xaxes(range=x_range)
-
     return fig
 
-# Pulsanti per il reset
-if st.button('Reset a Gennaio 2021'):
-    fig = create_chart(x_range=['2021-01-01', '2021-01-31'])
+# Pulsanti per il reset e visualizzazione
+st.title('Visualizzatore di Dati di Mercato con Streamlit e Plotly Express')
+
+if st.button('YTD'):
+    fig = create_line_chart(data, x_range=['2024-01-01', :])
     st.plotly_chart(fig)
 elif st.button('Mostra Tutto'):
-    fig = create_chart()  # Nessun x_range specificato, mostra tutto
+    fig = create_line_chart(data)  # Nessun x_range specificato, mostra tutto
     st.plotly_chart(fig)
 else:
     # Grafico di default al caricamento della pagina
-    fig = create_chart()
+    fig = create_line_chart(data)
     st.plotly_chart(fig)
-
-
