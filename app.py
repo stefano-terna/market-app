@@ -14,5 +14,5 @@ data = yf.Ticker(symbol)
 st.write(data.info['longBusinessSummary'])
 
 # Ottenere e visualizzare i dati storici
-hist_data = data.history(period="1mo")  # dati dell'ultimo mese
+hist_data = data.history(period="10y")  # dati dell'ultimo mese
 st.line_chart(hist_data['Close'])
