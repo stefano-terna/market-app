@@ -2,6 +2,7 @@ import streamlit as st
 import yfinance as yf
 import pandas as pd
 import plotly.graph_objs as go
+import plotly.express as px
 import datetime
 
 st.title('Visualizzatore di Dati di Mercato')
