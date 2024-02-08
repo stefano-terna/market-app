@@ -30,14 +30,14 @@ def create_line_chart(data, x_range=None):
                 direction="right",
                 buttons=[
                     dict(
-                        label="Linea",
-                        method="restyle",
-                        args=[{"type": "scatter", "mode": "lines"}]
+                        label="YTD",
+                        method="relayout",
+                        args=[{"xaxis.range":[date(date.today().year, 1, 1).strftime('%Y-%m-%d'),date.today().strftime('%Y-%m-%d')],"yaxis.autorange": True}]
                     ),
                     dict(
-                        label="Barre",
-                        method="restyle",
-                        args=[{"type": "bar"}]
+                        label="Mostra tutto",
+                        method="relayout",
+                        args=[{"xaxis.autorange": True, "yaxis.autorange": True}]
                     )
                 ]
             )
