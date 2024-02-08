@@ -24,6 +24,7 @@ def create_line_chart(data, x_range=None):
     if x_range is not None:
         fig.update_xaxes(range=x_range)
     return fig
+    st.plotly_chart(fig)
 
 # Sidebar o pulsanti principali
 st.title('Visualizzatore di Dati di Mercato con Streamlit e Plotly Express')
@@ -32,17 +33,13 @@ st.title('Visualizzatore di Dati di Mercato con Streamlit e Plotly Express')
 if st.button('YTD'):
     # Calcola la data di inizio dell'anno
     start_ytd = date(date.today().year, 1, 1).strftime('%Y-%m-%d')
-    fig = create_line_chart(data, x_range=[start_ytd, date.today().strftime('%Y-%m-%d')])
-    st.plotly_chart(fig)
+    create_line_chart(data, x_range=[start_ytd, date.today().strftime('%Y-%m-%d')])
 else:
-    fig =create_line_chart(data)
-    st.plotly_chart(fig)
+    create_line_chart(data)
     
 # Pulsante per mostrare tutto
 if st.button('Mostra Tutto'):
-    fig =create_line_chart(data)
-    st.plotly_chart(fig)
+    create_line_chart(data)
 # Grafico di default al caricamento della pagina se nessun pulsante è premuto
 else:
-    fig =create_line_chart(data)
-    st.plotly_chart(fig)
+    create_line_chart(data)
