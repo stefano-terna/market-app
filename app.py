@@ -28,8 +28,6 @@ def create_line_chart(data, x_range=None):
             dict(
                 type="buttons",
                 direction="right",
-                x=0.7,
-                y=1.2,
                 buttons=[
                     dict(
                         label="Linea",
