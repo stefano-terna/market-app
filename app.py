@@ -18,17 +18,36 @@ st.write(ticker_data.info['longBusinessSummary'])
 data = yf.download(symbol, period='10y')
 data.reset_index(inplace=True)
 
-# Opzioni del menu nella sidebar
-pagina = st.sidebar.radio("Seleziona una pagina:", ["Home", "Pagina 1", "Pagina 2"])
+# Inizializzazione dello stato della pagina se non esiste
+if 'pagina' not in st.session_state:
+    st.session_state.pagina = "Home"
 
-# Gestione della logica condizionale per mostrare le pagine
-if pagina == "Home":
+# Funzioni per impostare la pagina
+def set_home():
+    st.session_state.pagina = "Home"
+
+def set_pagina1():
+    st.session_state.pagina = "Pagina 1"
+
+def set_pagina2():
+    st.session_state.pagina = "Pagina 2"
+
+# Pulsanti nella sidebar per selezionare la pagina
+st.sidebar.button("Home", on_click=set_home)
+st.sidebar.button("Pagina 1", on_click=set_pagina1)
+st.sidebar.button("Pagina 2", on_click=set_pagina2)
+
+# Titolo dell'applicazione
+st.title("Applicazione Streamlit con Sidebar")
+
+# Mostra la pagina selezionata
+if st.session_state.pagina == "Home":
     st.header("Pagina Home")
     st.write("Benvenuto nella pagina Home!")
-elif pagina == "Pagina 1":
+elif st.session_state.pagina == "Pagina 1":
     st.header("Pagina 1")
     st.write("Ecco alcune informazioni sulla Pagina 1.")
-elif pagina == "Pagina 2":
+elif st.session_state.pagina == "Pagina 2":
     st.header("Pagina 2")
     st.write("Ecco alcune informazioni sulla Pagina 2.")
 
