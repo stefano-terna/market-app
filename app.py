@@ -28,8 +28,7 @@ def create_line_chart(data, x_range=None):
 
 # Sidebar o pulsanti principali
 st.title('Visualizzatore di Dati di Mercato con Streamlit e Plotly Express')
-st.button('YTD')
-st.button('Mostra Tutto')
+
 
 # Opzione YTD
 if st.button('YTD'):
