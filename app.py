@@ -19,7 +19,7 @@ data = yf.download(symbol, period='10y')
 data.reset_index(inplace=True)
 
 # Opzioni del menu nella sidebar
-pagina = st.sidebar.selectbox("Seleziona una pagina:", ["Home", "Pagina 1", "Pagina 2"])
+pagina = st.sidebar.radio("Seleziona una pagina:", ["Home", "Pagina 1", "Pagina 2"])
 
 # Gestione della logica condizionale per mostrare le pagine
 if pagina == "Home":
