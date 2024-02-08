@@ -34,8 +34,6 @@ if st.button('YTD'):
     # Calcola la data di inizio dell'anno
     start_ytd = date(date.today().year, 1, 1).strftime('%Y-%m-%d')
     create_line_chart(data, x_range=[start_ytd, date.today().strftime('%Y-%m-%d')])
-else:
-    create_line_chart(data)
     
 # Pulsante per mostrare tutto
 if st.button('Mostra Tutto'):
