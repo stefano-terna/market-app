@@ -18,6 +18,19 @@ st.write(ticker_data.info['longBusinessSummary'])
 data = yf.download(symbol, period='10y')
 data.reset_index(inplace=True)
 
+# Opzioni del menu nella sidebar
+pagina = st.sidebar.selectbox("Seleziona una pagina:", ["Home", "Pagina 1", "Pagina 2"])
+
+# Gestione della logica condizionale per mostrare le pagine
+if pagina == "Home":
+    st.header("Pagina Home")
+    st.write("Benvenuto nella pagina Home!")
+elif pagina == "Pagina 1":
+    st.header("Pagina 1")
+    st.write("Ecco alcune informazioni sulla Pagina 1.")
+elif pagina == "Pagina 2":
+    st.header("Pagina 2")
+    st.write("Ecco alcune informazioni sulla Pagina 2.")
 
 #definizione funzione data odierna
 oggi=lambda:date.today()
