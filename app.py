@@ -18,6 +18,10 @@ st.write(ticker_data.info['longBusinessSummary'])
 data = yf.download(symbol, period='10y')
 data.reset_index(inplace=True)
 
+
+#definizione funzione data odierna
+oggi=lambda:date.today().strftime('%Y-%m-%d')
+
 # Grafico con Plotly Express
 def create_line_chart(data, x_range=None):
     fig = px.line(data, x='Date', y='Close', title=f'Prezzo di chiusura')
@@ -32,7 +36,7 @@ def create_line_chart(data, x_range=None):
                     dict(
                         label="YTD",
                         method="relayout",
-                        args=[{"xaxis.range":[date(date.today().year, 1, 1).strftime('%Y-%m-%d'),date.today().strftime('%Y-%m-%d')],"yaxis.autorange": True}]
+                        args=[{"xaxis.range":[date(date.today().year, 1, 1),date.today()],"yaxis.autorange": True}]
                     ),
                     dict(
                         label="Mostra tutto",
