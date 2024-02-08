@@ -32,12 +32,17 @@ st.title('Visualizzatore di Dati di Mercato con Streamlit e Plotly Express')
 if st.button('YTD'):
     # Calcola la data di inizio dell'anno
     start_ytd = date(date.today().year, 1, 1).strftime('%Y-%m-%d')
-    create_line_chart(data, x_range=[start_ytd, date.today().strftime('%Y-%m-%d')])
+    fig = create_line_chart(data, x_range=[start_ytd, date.today().strftime('%Y-%m-%d')])
+    st.plotly_chart(fig)
+else:
+    fig =create_line_chart(data)
+    st.plotly_chart(fig)
     
 # Pulsante per mostrare tutto
 if st.button('Mostra Tutto'):
-    create_line_chart(data)
-    
+    fig =reate_line_chart(data)
+    st.plotly_chart(fig)
 # Grafico di default al caricamento della pagina se nessun pulsante è premuto
 else:
-    create_line_chart(data)
+    fig =create_line_chart(data)
+    st.plotly_chart(fig)
