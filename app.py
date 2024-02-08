@@ -40,7 +40,7 @@ else:
     
 # Pulsante per mostrare tutto
 if st.button('Mostra Tutto'):
-    fig =reate_line_chart(data)
+    fig =create_line_chart(data)
     st.plotly_chart(fig)
 # Grafico di default al caricamento della pagina se nessun pulsante è premuto
 else:
