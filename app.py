@@ -51,4 +51,4 @@ def create_line_chart(data, x_range=None):
 # Sidebar o pulsanti principali
 st.title('Visualizzatore di Dati di Mercato con Streamlit e Plotly Express')
 
-    create_line_chart(data)
+create_line_chart(data)
