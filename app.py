@@ -20,7 +20,7 @@ data.reset_index(inplace=True)
 
 
 #definizione funzione data odierna
-oggi=lambda:date.today().strftime('%Y-%m-%d')
+oggi=lambda:date.today()
 
 # Grafico con Plotly Express
 def create_line_chart(data, x_range=None):
