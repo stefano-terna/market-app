@@ -52,7 +52,7 @@ elif st.session_state.pagina == "Pagina 2":
     st.write("Ecco alcune informazioni sulla Pagina 2.")
 
 #definizione funzione data odierna
-oggi=lambda:date.today()
+oggi=date.today()
 
 # Grafico con Plotly Express
 def create_line_chart(data, x_range=None):
@@ -68,7 +68,7 @@ def create_line_chart(data, x_range=None):
                     dict(
                         label="YTD",
                         method="relayout",
-                        args=[{"xaxis.range":[date(oggi().year, 1, 1),oggi()],"yaxis.autorange": True}]
+                        args=[{"xaxis.range":[date(oggi.year, 1, 1),oggi],"yaxis.autorange": True}]
                     ),
                     dict(
                         label="Mostra tutto",
