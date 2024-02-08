@@ -36,7 +36,7 @@ if st.button('YTD'):
     create_line_chart(data, x_range=[start_ytd, date.today().strftime('%Y-%m-%d')])
     
 # Pulsante per mostrare tutto
-if st.button('Mostra Tutto'):
+elif st.button('Mostra Tutto'):
     create_line_chart(data)
 # Grafico di default al caricamento della pagina se nessun pulsante è premuto
 else:
