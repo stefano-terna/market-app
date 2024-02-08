@@ -23,22 +23,32 @@ def create_line_chart(data, x_range=None):
     fig = px.line(data, x='Date', y='Close', title=f'Prezzo di chiusura')
     if x_range is not None:
         fig.update_xaxes(range=x_range)
+    fig.update_layout(
+        updatemenus=[
+            dict(
+                type="buttons",
+                direction="right",
+                x=0.7,
+                y=1.2,
+                buttons=[
+                    dict(
+                        label="Linea",
+                        method="restyle",
+                        args=[{"type": "scatter", "mode": "lines"}]
+                    ),
+                    dict(
+                        label="Barre",
+                        method="restyle",
+                        args=[{"type": "bar"}]
+                    )
+                ]
+            )
+        ]
+    )
     st.plotly_chart(fig)
     return fig
 
 # Sidebar o pulsanti principali
 st.title('Visualizzatore di Dati di Mercato con Streamlit e Plotly Express')
 
-
-# Opzione YTD
-if st.button('YTD'):
-    # Calcola la data di inizio dell'anno
-    start_ytd = date(date.today().year, 1, 1).strftime('%Y-%m-%d')
-    create_line_chart(data, x_range=[start_ytd, date.today().strftime('%Y-%m-%d')])
-    
-# Pulsante per mostrare tutto
-elif st.button('Mostra Tutto'):
-    create_line_chart(data)
-# Grafico di default al caricamento della pagina se nessun pulsante è premuto
-else:
     create_line_chart(data)
