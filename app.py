@@ -23,8 +23,8 @@ def create_line_chart(data, x_range=None):
     fig = px.line(data, x='Date', y='Close', title=f'Prezzo di chiusura')
     if x_range is not None:
         fig.update_xaxes(range=x_range)
-    return fig
     st.plotly_chart(fig)
+    return fig
 
 # Sidebar o pulsanti principali
 st.title('Visualizzatore di Dati di Mercato con Streamlit e Plotly Express')
