@@ -1,7 +1,6 @@
 import streamlit as st
 import yfinance as yf
 import pandas as pd
-import plotly.graph_objs as go
 import plotly.express as px
 import datetime
 
@@ -26,16 +25,23 @@ def create_line_chart(data, x_range=None):
         fig.update_xaxes(range=x_range)
     return fig
 
-# Pulsanti per il reset e visualizzazione
+# Sidebar o pulsanti principali
 st.title('Visualizzatore di Dati di Mercato con Streamlit e Plotly Express')
 
+# Opzione YTD
 if st.button('YTD'):
-    fig = create_line_chart(data, x_range=['2024-01-01', datetime.date.today().strftime('%Y-%m-%d')])
-    st.plotly_chart(fig)
-elif st.button('Mostra Tutto'):
-    fig = create_line_chart(data)  # Nessun x_range specificato, mostra tutto
-    st.plotly_chart(fig)
+    # Calcola la data di inizio dell'anno
+    start_ytd = date(date.today().year, 1, 1).strftime('%Y-%m-%d')
+    create_line_chart(data, x_range=[start_ytd, date.today().strftime('%Y-%m-%d')])
 else:
-    # Grafico di default al caricamento della pagina
-    fig = create_line_chart(data)
-    st.plotly_chart(fig)
+    create_line_chart(data)
+
+# Pulsante per mostrare tutto
+if st.button('Mostra Tutto'):
+    create_line_chart(data)
+
+# Grafico di default al caricamento della pagina se nessun pulsante è premuto
+# Questa sezione potrebbe non essere necessaria a seconda della tua logica di visualizzazione specifica
+# Se vuoi un grafico visualizzato di default senza interazione, decommenta le seguenti due righe:
+ else:
+    create_line_chart(data)
