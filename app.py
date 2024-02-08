@@ -36,7 +36,7 @@ def create_line_chart(data, x_range=None):
                     dict(
                         label="YTD",
                         method="relayout",
-                        args=[{"xaxis.range":[date(oggi(), 1, 1),oggi()],"yaxis.autorange": True}]
+                        args=[{"xaxis.range":[date(oggi().year, 1, 1),oggi()],"yaxis.autorange": True}]
                     ),
                     dict(
                         label="Mostra tutto",
