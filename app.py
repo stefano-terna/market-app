@@ -4,7 +4,8 @@ import pandas as pd
 import plotly.express as px
 from datetime import date
 
-
+#definizione funzione data odierna
+oggi=date.today()
 # Grafico con Plotly Express
 def create_line_chart(data, x_range=None):
     fig = px.line(data, x='Date', y='Close', title=f'Prezzo di chiusura')
@@ -87,9 +88,18 @@ elif st.session_state.pagina == "Market Data":
 elif st.session_state.pagina == "Snam":
     st.header("Snam")
     st.write("Ecco alcune informazioni sulla Snam.")
+    symbol_1 = st.text_input('Inserisci il simbolo dell\'azione (es. SRG.MI):', 'SRG.MI')
 
-#definizione funzione data odierna
-oggi=date.today()
+    # Utilizzo di yfinance per ottenere i dati
+    ticker_data = yf.Ticker(symbol_1)
+    data_1 = yf.download(symbol_1, period='10y')
+
+    # Sidebar o pulsanti principali
+    st.title('Visualizzatore di Dati di Mercato con Streamlit e Plotly Express')
+    create_line_chart(data_1)
+
+
+
 
 
 
