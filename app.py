@@ -93,6 +93,7 @@ elif st.session_state.pagina == "Snam":
     # Utilizzo di yfinance per ottenere i dati
     ticker_data = yf.Ticker(symbol_1)
     data_1 = yf.download(symbol_1, period='10y')
+    data_1.reset_index(inplace=True)
 
     # Sidebar o pulsanti principali
     st.title('Visualizzatore di Dati di Mercato con Streamlit e Plotly Express')
