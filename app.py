@@ -12,8 +12,7 @@ symbol = st.text_input('Inserisci il simbolo dell\'azione (es. TRN.MI):', 'TRN.M
 # Utilizzo di yfinance per ottenere i dati
 ticker_data = yf.Ticker(symbol)
 
-# Visualizzazione di alcuni dati di base
-st.write(ticker_data.info['longBusinessSummary'])
+
 
 data = yf.download(symbol, period='10y')
 data.reset_index(inplace=True)
@@ -27,14 +26,14 @@ def set_home():
     st.session_state.pagina = "Home"
 
 def set_pagina1():
-    st.session_state.pagina = "Pagina 1"
+    st.session_state.pagina = "Market Data"
 
 def set_pagina2():
     st.session_state.pagina = "Pagina 2"
 
 # Pulsanti nella sidebar per selezionare la pagina
 st.sidebar.button("Home", on_click=set_home)
-st.sidebar.button("Pagina 1", on_click=set_pagina1)
+st.sidebar.button("Market Data", on_click=set_pagina1)
 st.sidebar.button("Pagina 2", on_click=set_pagina2)
 
 # Titolo dell'applicazione
@@ -44,9 +43,18 @@ st.title("Applicazione Streamlit con Sidebar")
 if st.session_state.pagina == "Home":
     st.header("Pagina Home")
     st.write("Benvenuto nella pagina Home!")
-elif st.session_state.pagina == "Pagina 1":
-    st.header("Pagina 1")
+    
+    # Visualizzazione di alcuni dati di base
+    st.write(ticker_data.info['longBusinessSummary'])
+    
+elif st.session_state.pagina == "Market Data":
+    st.header("Market Data")
     st.write("Ecco alcune informazioni sulla Pagina 1.")
+    
+    # Sidebar o pulsanti principali
+    st.title('Visualizzatore di Dati di Mercato con Streamlit e Plotly Express')
+    create_line_chart(data)
+
 elif st.session_state.pagina == "Pagina 2":
     st.header("Pagina 2")
     st.write("Ecco alcune informazioni sulla Pagina 2.")
@@ -82,7 +90,4 @@ def create_line_chart(data, x_range=None):
     st.plotly_chart(fig)
     return fig
 
-# Sidebar o pulsanti principali
-st.title('Visualizzatore di Dati di Mercato con Streamlit e Plotly Express')
 
-create_line_chart(data)
