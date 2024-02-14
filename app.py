@@ -4,6 +4,36 @@ import pandas as pd
 import plotly.express as px
 from datetime import date
 
+print("changes")
+
+# Grafico con Plotly Express
+def create_line_chart(data, x_range=None):
+    fig = px.line(data, x='Date', y='Close', title=f'Prezzo di chiusura')
+    if x_range is not None:
+        fig.update_xaxes(range=x_range)
+    fig.update_layout(
+        updatemenus=[
+            dict(
+                type="buttons",
+                direction="right",
+                buttons=[
+                    dict(
+                        label="YTD",
+                        method="relayout",
+                        args=[{"xaxis.range":["2024-01-01",None],"yaxis.autorange": True}]
+                    ),
+                    dict(
+                        label="Mostra tutto",
+                        method="relayout",
+                        args=[{"xaxis.autorange": True, "yaxis.autorange": True}]
+                    )
+                ]
+            )
+        ]
+    )
+    st.plotly_chart(fig)
+    return fig
+
 st.title('Visualizzatore di Dati di Mercato')
 
 # Input dell'utente per selezionare il simbolo dell'azione
@@ -49,7 +79,7 @@ if st.session_state.pagina == "Home":
     
 elif st.session_state.pagina == "Market Data":
     st.header("Market Data")
-    st.write("Ecco alcune informazioni sulla Pagina 1.")
+    st.write("Ecco alcune informazioni sui dati di mercato.")
     
     # Sidebar o pulsanti principali
     st.title('Visualizzatore di Dati di Mercato con Streamlit e Plotly Express')
@@ -62,32 +92,6 @@ elif st.session_state.pagina == "Pagina 2":
 #definizione funzione data odierna
 oggi=date.today()
 
-# Grafico con Plotly Express
-def create_line_chart(data, x_range=None):
-    fig = px.line(data, x='Date', y='Close', title=f'Prezzo di chiusura')
-    if x_range is not None:
-        fig.update_xaxes(range=x_range)
-    fig.update_layout(
-        updatemenus=[
-            dict(
-                type="buttons",
-                direction="right",
-                buttons=[
-                    dict(
-                        label="YTD",
-                        method="relayout",
-                        args=[{"xaxis.range":["2024-01-01",None],"yaxis.autorange": True}]
-                    ),
-                    dict(
-                        label="Mostra tutto",
-                        method="relayout",
-                        args=[{"xaxis.autorange": True, "yaxis.autorange": True}]
-                    )
-                ]
-            )
-        ]
-    )
-    st.plotly_chart(fig)
-    return fig
+
 
 
