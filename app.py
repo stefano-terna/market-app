@@ -4,7 +4,6 @@ import pandas as pd
 import plotly.express as px
 from datetime import date
 
-print("changes")
 
 # Grafico con Plotly Express
 def create_line_chart(data, x_range=None):
@@ -59,12 +58,12 @@ def set_pagina1():
     st.session_state.pagina = "Market Data"
 
 def set_pagina2():
-    st.session_state.pagina = "Pagina 2"
+    st.session_state.pagina = "Snam"
 
 # Pulsanti nella sidebar per selezionare la pagina
 st.sidebar.button("Home", on_click=set_home)
 st.sidebar.button("Market Data", on_click=set_pagina1)
-st.sidebar.button("Pagina 2", on_click=set_pagina2)
+st.sidebar.button("Snam", on_click=set_pagina2)
 
 # Titolo dell'applicazione
 st.title("Applicazione Streamlit con Sidebar")
@@ -85,9 +84,9 @@ elif st.session_state.pagina == "Market Data":
     st.title('Visualizzatore di Dati di Mercato con Streamlit e Plotly Express')
     create_line_chart(data)
 
-elif st.session_state.pagina == "Pagina 2":
-    st.header("Pagina 2")
-    st.write("Ecco alcune informazioni sulla Pagina 2.")
+elif st.session_state.pagina == "Snam":
+    st.header("Snam")
+    st.write("Ecco alcune informazioni sulla Snam.")
 
 #definizione funzione data odierna
 oggi=date.today()
